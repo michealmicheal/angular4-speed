@@ -1,0 +1,51 @@
+<div class = 'panel panel-primary'>
+    <div class = 'panel-heading'>
+        <div>{{pageTitle}}</div>
+    </div>
+
+    <div class = 'table-responsive'>
+        <table class = 'table' *ngIf='events && events.length'>
+            <thead>
+                <tr>
+                    <th>
+                        <button class = 'btn btn-primary' (click)='toggleImage()'>
+                            {{showImage ? 'Hide':'Show'}} Images
+                        </button>
+                    </th>
+                    <th>Event</th>
+                    <th>Code</th>
+                    <th>Date</th>
+                    <th>Fee</th>
+                    <th>Rating</th>
+                    <th>Map</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = 'let event of events; let i = index' [attr.data-index]='i'>
+                    <td>
+                        <img [src] = 'event.imageUrl' 
+                        [title] = 'event.name'
+                        [style.width.px]='imageWidth'
+                        [style.margin.px]='imageMargin'
+                        *ngIf = 'showImage'>
+                    </td>
+                    <td>{{event.name}}</td>
+                    <td>{{event.code | lowercase}}</td>
+                    <td>{{event.date}}</td>
+                    <td>{{event.fee | currency:'EUR':true:'1.2-2'}}</td>
+                    <td>
+                        {{event.rating}}
+                        <!--<acw-thumb [rating] = 'event.rating' (ratingClicked)='onRatingClicked($event)'>
+                        </acw-thumb>-->
+                    </td>
+                    <td>
+                        {{showImage ? '':'asdf'}}
+                        <div [hidden] = '!showImage'>
+                        <acw-map [mapID] = 'i' [showMap] = 'showImage'></acw-map>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
