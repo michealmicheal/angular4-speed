@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, Input } from '@angular/core';
-import { } from '@types/googlemaps';
+//import { } from '@types/googlemaps';
 
 @Component({
     selector: 'acw-map',
